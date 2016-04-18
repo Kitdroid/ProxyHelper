@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.kitdroid.proxyhelper.R;
 import org.kitdroid.proxyhelper.proxy.ProxyEntity;
-import org.kitdroid.proxyhelper.proxy.ProxyManager;
+import org.kitdroid.proxyhelper.proxy.ProxyDataManager;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ import java.util.List;
  */
 public class ProxyConfigAdatper extends BaseAdapter {
     private final LayoutInflater inflater;
-    private final ProxyManager proxyManager;
+    private final ProxyDataManager proxyManager;
     private List<ProxyEntity> proxys;
     private String currentHost;
     private int currentPort;
 
     public ProxyConfigAdatper(LayoutInflater inflater) {
         this.inflater = inflater;
-        proxyManager = ProxyManager.getInstance();
+        proxyManager = ProxyDataManager.getInstance();
         proxys = proxyManager.getProxys();
     }
 

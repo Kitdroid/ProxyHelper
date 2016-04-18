@@ -15,26 +15,26 @@ import java.util.List;
 /**
  * Created by huiyh on 2016/4/18.
  */
-public class ProxyManager {
+public class ProxyDataManager {
 
     public static final String PROXY_DATA = "proxy_data";
-    private static ProxyManager sInstance ;
+    private static ProxyDataManager sInstance ;
 
     private final Context mContext = ContextMate.getApplication();
     private List<ProxyEntity> mProxyList = new ArrayList<ProxyEntity>();
 
-    public static ProxyManager getInstance(){
+    public static ProxyDataManager getInstance(){
         if(sInstance == null){
-            synchronized (ProxyManager.class){
+            synchronized (ProxyDataManager.class){
                 if(sInstance == null){
-                    sInstance = new ProxyManager();
+                    sInstance = new ProxyDataManager();
                 }
             }
         }
         return sInstance;
     }
 
-    private ProxyManager() {
+    private ProxyDataManager() {
         parseProxyList();
     }
 
