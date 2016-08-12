@@ -44,9 +44,9 @@
             android:label="@string/title_activity_proxy_detail_edit">
         </activity>
 
-        <receiver android:name="org.kitdroid.receiver.UpdateProxyRreceiver">
-            <intent-filter >
-                <action android:name="org.kirdroid.action.UPDATE_PROXY"/>
+        <receiver android:name="org.kitdroid.receiver.UpdateProxyReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="org.kitdroid.action.UPDATE_PROXY"/>
             </intent-filter>
         </receiver>
     </application>

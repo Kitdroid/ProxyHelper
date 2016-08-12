@@ -43,6 +43,9 @@ public class ProxyDataManager {
     }
 
     public void addProxy(ProxyEntity entity) {
+        if (mProxyList.contains(entity)) {
+            return;
+        }
         mProxyList.add(entity);
         storeProxyList();
     }
