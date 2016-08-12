@@ -134,7 +134,6 @@ public class WifiConnect {
 
     public boolean updateConfig(WifiConfiguration configuration) {
         int i = wifiManager.updateNetwork(configuration);
-        Logger.e("byz", "..............updateNetwork " + i);
         if (i == -1) {
             return false;
         }
