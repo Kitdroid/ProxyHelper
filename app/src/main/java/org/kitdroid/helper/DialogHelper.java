@@ -16,8 +16,8 @@ public class DialogHelper {
         Builder builder = new Builder(activity);
         builder.setTitle("提示");
         builder.setMessage(msg);
-        builder.setPositiveButton("确定",listener);
-        builder.setNegativeButton("取消",null);
+        builder.setPositiveButton("确定", listener);
+        builder.setNegativeButton("取消", null);
 
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -29,7 +29,7 @@ public class DialogHelper {
         Builder builder = new Builder(activity);
         builder.setTitle("提示");
         builder.setMessage(msg);
-        builder.setPositiveButton("确定",listener);
+        builder.setPositiveButton("确定", listener);
 
         AlertDialog dialog = builder.create();
         dialog.show();

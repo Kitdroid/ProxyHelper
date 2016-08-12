@@ -10,7 +10,7 @@ public class StringUtils {
 
     @Nullable
     public static Integer parseInteger(String port) {
-        if(!TextUtils.isEmpty(port) && TextUtils.isDigitsOnly(port)){
+        if (!TextUtils.isEmpty(port) && TextUtils.isDigitsOnly(port)) {
             try {
                 int i = Integer.parseInt(port);
                 return i;
@@ -22,7 +22,7 @@ public class StringUtils {
     }
 
     public static int parseInt(String port, int defaultValue) {
-        if(!TextUtils.isEmpty(port) && TextUtils.isDigitsOnly(port)){
+        if (!TextUtils.isEmpty(port) && TextUtils.isDigitsOnly(port)) {
             try {
                 int i = Integer.parseInt(port);
                 return i;

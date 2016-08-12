@@ -10,35 +10,33 @@ import org.kitdroid.proxyhelper.BuildConfig;
  */
 public class Toaster {
 
-    public static void showLong(Context context, CharSequence text){
+    public static void showLong(Context context, CharSequence text) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
-    @Deprecated
-    public static void showLong(CharSequence text){
+    public static void showLong(CharSequence text) {
         Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
     }
 
-    public static void showShort(Context context,CharSequence text){
+    public static void showShort(Context context, CharSequence text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
-    @Deprecated
-    public static void showShort(CharSequence text){
+    public static void showShort(CharSequence text) {
         Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
-    public static void showTest(CharSequence text){
-        if(!isOpen()){
+    public static void showTest(CharSequence text) {
+        if (!isOpen()) {
             return;
         }
         Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
-
-    private static final boolean isOpen(){
+    private static final boolean isOpen() {
         return BuildConfig.DEBUG;
     }
+
     private static Context getContext() {
         return ContextMate.getApplication();
     }

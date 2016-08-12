@@ -136,7 +136,7 @@ public class ProxyDetailEditActivity extends AppCompatActivity implements Loader
     }
 
     private boolean isPortValid(String port) {
-        if(!TextUtils.isEmpty(port) && TextUtils.isDigitsOnly(port)){
+        if (!TextUtils.isEmpty(port) && TextUtils.isDigitsOnly(port)) {
             Integer integer = StringUtils.parseInteger(port);
             return integer != null && integer > 0;
         }
@@ -193,7 +193,6 @@ public class ProxyDetailEditActivity extends AppCompatActivity implements Loader
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
-
 
 
     private interface ProfileQuery {

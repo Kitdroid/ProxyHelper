@@ -10,7 +10,7 @@ import android.util.DisplayMetrics;
  * <li>{@link ScreenUtils#dpToPx(Context, float)}</li>
  * <li>{@link ScreenUtils#pxToDp(Context, float)}</li>
  * </ul>
- * 
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2014-2-14
  */
 public class ScreenUtils {
@@ -23,11 +23,11 @@ public class ScreenUtils {
         return context.getResources().getDisplayMetrics();
     }
 
-    public static int getScreenWidth(Context context){
+    public static int getScreenWidth(Context context) {
         return getDisplayMetrics(context).widthPixels;
     }
 
-    public static int getScreenHeight(Context context){
+    public static int getScreenHeight(Context context) {
         return getDisplayMetrics(context).heightPixels;
     }
 
@@ -46,10 +46,10 @@ public class ScreenUtils {
     }
 
     public static float dpToPxInt(Context context, float dp) {
-        return (int)(dpToPx(context, dp) + 0.5f);
+        return (int) (dpToPx(context, dp) + 0.5f);
     }
 
     public static float pxToDpCeilInt(Context context, float px) {
-        return (int)(pxToDp(context, px) + 0.5f);
+        return (int) (pxToDp(context, px) + 0.5f);
     }
 }

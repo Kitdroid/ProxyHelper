@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -20,24 +21,27 @@ import java.util.List;
  */
 public class ProxyConfigAdatper extends BaseAdapter {
     private final LayoutInflater inflater;
+    private final OnCheckedChangeListener listener;
     private final ProxyDataManager proxyManager;
     private List<ProxyEntity> proxys;
     private String currentHost;
     private int currentPort;
 
-    public ProxyConfigAdatper(LayoutInflater inflater) {
+    public ProxyConfigAdatper(LayoutInflater inflater, OnCheckedChangeListener listener) {
         this.inflater = inflater;
+        this.listener = listener;
         proxyManager = ProxyDataManager.getInstance();
         proxys = proxyManager.getProxys();
     }
 
-    public void setCurrentProxy(String host, int port){
+    public void setCurrentProxy(String host, int port) {
         currentHost = host;
         currentPort = port;
+        notifyDataSetChanged();
     }
 
-    private boolean isCurrentProxy(ProxyEntity entity){
-        return TextUtils.equals(entity.getHost(),currentHost) && entity.getPort() == currentPort;
+    private boolean isCurrentProxy(ProxyEntity entity) {
+        return TextUtils.equals(entity.getHost(), currentHost) && entity.getPort() == currentPort;
     }
 
     @Override
@@ -57,10 +61,10 @@ public class ProxyConfigAdatper extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
+        if (convertView == null) {
             convertView = createView();
         }
-        bindView(position,convertView,parent);
+        bindView(position, convertView, parent);
 
         return convertView;
     }
@@ -68,13 +72,14 @@ public class ProxyConfigAdatper extends BaseAdapter {
     @NonNull
     private View createView() {
         View convertView;
-        convertView = inflater.inflate(R.layout.item_proxy_info,null);
+        convertView = inflater.inflate(R.layout.item_proxy_info, null);
         Holder holder = new Holder();
         convertView.setTag(holder);
 
         holder.hostView = (TextView) convertView.findViewById(R.id.text_proxy_host);
         holder.portView = (TextView) convertView.findViewById(R.id.text_proxy_port);
         holder.proxySwitch = (Switch) convertView.findViewById(R.id.switch_proxy);
+        holder.proxySwitch.setOnCheckedChangeListener(listener);
         return convertView;
     }
 
@@ -83,7 +88,8 @@ public class ProxyConfigAdatper extends BaseAdapter {
         ProxyEntity item = (ProxyEntity) getItem(position);
         holder.hostView.setText(item.getHost());
         holder.portView.setText(String.valueOf(item.getPort()));
-        holder.proxySwitch.setSelected(isCurrentProxy(item));
+        holder.proxySwitch.setChecked(isCurrentProxy(item));
+        holder.proxySwitch.setTag(item);
     }
 
     @Override
@@ -92,7 +98,7 @@ public class ProxyConfigAdatper extends BaseAdapter {
         super.notifyDataSetChanged();
     }
 
-    private static class Holder{
+    private static class Holder {
         TextView hostView;
         TextView portView;
         Switch proxySwitch;

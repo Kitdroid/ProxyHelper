@@ -72,7 +72,6 @@ public class SystemUtils {
     }
 
     /**
-     *
      * @param context
      * @return
      */
@@ -80,8 +79,10 @@ public class SystemUtils {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         return notificationManager;
     }
+
     /**
      * 网络信息
+     *
      * @param context
      * @return
      */
@@ -91,22 +92,23 @@ public class SystemUtils {
         return connMgr;
     }
 
-    public static NetworkInfo getNetworkInfo(Context context){
+    public static NetworkInfo getNetworkInfo(Context context) {
         NetworkInfo netInfo = getConnectivityManager(context).getActiveNetworkInfo();
         return netInfo;
     }
 
     /**
      * 电话相关信息
+     *
      * @param context
      * @return
      */
-    public static TelephonyManager getTelephonyManager(Context context){
+    public static TelephonyManager getTelephonyManager(Context context) {
         TelephonyManager phoneMgr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
         return phoneMgr;
     }
 
-    public static String getDriviceIMEI(Context context){
+    public static String getDriviceIMEI(Context context) {
         return getTelephonyManager(context).getDeviceId();
     }
 }

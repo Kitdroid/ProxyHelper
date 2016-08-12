@@ -18,15 +18,15 @@ import java.util.List;
 public class ProxyDataManager {
 
     public static final String PROXY_DATA = "proxy_data";
-    private static ProxyDataManager sInstance ;
+    private static ProxyDataManager sInstance;
 
     private final Context mContext = ContextMate.getApplication();
     private List<ProxyEntity> mProxyList = new ArrayList<ProxyEntity>();
 
-    public static ProxyDataManager getInstance(){
-        if(sInstance == null){
-            synchronized (ProxyDataManager.class){
-                if(sInstance == null){
+    public static ProxyDataManager getInstance() {
+        if (sInstance == null) {
+            synchronized (ProxyDataManager.class) {
+                if (sInstance == null) {
                     sInstance = new ProxyDataManager();
                 }
             }
@@ -38,17 +38,17 @@ public class ProxyDataManager {
         parseProxyList();
     }
 
-    public List<ProxyEntity> getProxys(){
+    public List<ProxyEntity> getProxys() {
         return Collections.unmodifiableList(mProxyList);
     }
 
-    public void addProxy(ProxyEntity entity){
+    public void addProxy(ProxyEntity entity) {
         mProxyList.add(entity);
         storeProxyList();
     }
 
-    public void removeProxy(ProxyEntity entity){
-        if(mProxyList.contains(entity)){
+    public void removeProxy(ProxyEntity entity) {
+        if (mProxyList.contains(entity)) {
             mProxyList.remove(entity);
             storeProxyList();
         }
@@ -57,22 +57,22 @@ public class ProxyDataManager {
     private void storeProxyList() {
         String data = JSONUtils.toJson(mProxyList);
         Editor edit = getPreferences().edit();
-        edit.putString(PROXY_DATA,data);
+        edit.putString(PROXY_DATA, data);
         edit.commit();
     }
 
     private void parseProxyList() {
-        String data = getPreferences().getString(PROXY_DATA,null);
-        if(!TextUtils.isEmpty(data)){
+        String data = getPreferences().getString(PROXY_DATA, null);
+        if (!TextUtils.isEmpty(data)) {
             ArrayList<ProxyEntity> proxyEntities = JSONUtils.toList(data, ProxyEntity.class);
-            if(proxyEntities != null){
+            if (proxyEntities != null) {
                 mProxyList.clear();
                 mProxyList.addAll(proxyEntities);
             }
         }
     }
 
-    public SharedPreferences getPreferences(){
-        return mContext.getSharedPreferences("proxy_manager",Context.MODE_PRIVATE);
+    public SharedPreferences getPreferences() {
+        return mContext.getSharedPreferences("proxy_manager", Context.MODE_PRIVATE);
     }
 }

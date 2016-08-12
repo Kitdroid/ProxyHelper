@@ -25,7 +25,6 @@ public class IntentUtils {
      *
      * @param context
      * @param intent
-     *
      * @return
      */
     public static boolean isIntentResolvable(Context context, Intent intent) {
@@ -34,6 +33,7 @@ public class IntentUtils {
 
     /**
      * 判断Intent有没有对应的Activity去处理(本应用内),包含相应信息
+     *
      * @param context
      * @param action
      * @return
@@ -51,13 +51,13 @@ public class IntentUtils {
         return list.size() > 0;
     }
 
-    public static boolean startQQChat(Context context, String qqNum){
+    public static boolean startQQChat(Context context, String qqNum) {
         StringBuilder builder = new StringBuilder();
         builder.append("mqqwpa://im/chat?chat_type=wpa&uin=").append(qqNum).append("&version=1");
-        Uri uri= Uri.parse(builder.toString());
+        Uri uri = Uri.parse(builder.toString());
 
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        if(!isIntentResolvable(context,intent)){
+        if (!isIntentResolvable(context, intent)) {
             return false;
         }
         context.startActivity(intent);
@@ -79,11 +79,11 @@ public class IntentUtils {
      * @param phoneNum
      */
     public static void startPhoneDial(Context context, String phoneNum) {
-        if(TextUtils.isEmpty(phoneNum)){
+        if (TextUtils.isEmpty(phoneNum)) {
             i("phoneNum is Empty");
             return;
         }
-        Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNum));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNum));
         context.startActivity(intent);
     }
 
@@ -94,7 +94,7 @@ public class IntentUtils {
      * @param phoneNum
      */
     public static void startPhoneCall(Context context, String phoneNum) {
-        if(TextUtils.isEmpty(phoneNum)){
+        if (TextUtils.isEmpty(phoneNum)) {
             i("phoneNum is Empty");
             return;
         }
@@ -106,12 +106,13 @@ public class IntentUtils {
         Intent intent = new Intent(activity, cls);
         activity.startActivity(intent);
     }
+
     public static void startActivityForResult(@NonNull Activity activity, @NonNull Class<? extends Activity> cls, int requestCode) {
         Intent intent = new Intent(activity, cls);
-        activity.startActivityForResult(intent,requestCode);
+        activity.startActivityForResult(intent, requestCode);
     }
 
-    private static void i(String msg){
-        Logger.i(TAG,msg);
+    private static void i(String msg) {
+        Logger.i(TAG, msg);
     }
 }
